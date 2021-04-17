@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -66,7 +67,8 @@ module.exports = (_env, { mode }) => ({
   },
   optimization: {
     moduleIds: 'named',
-    chunkIds: 'named'
+    chunkIds: 'named',
+    minimizer: [`...`, new CssMinimizerPlugin()]
   },
   plugins: [
     new webpack.ProgressPlugin(),
